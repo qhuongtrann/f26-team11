@@ -2,6 +2,6 @@
 > ErrandRunner
 
 ## Team Members
-> Joyce Tran
+> Joyce Tran 
 
 > Jessie Bernardino-Dominguez
