@@ -1,7 +1,7 @@
 ## Title
-> Your project title
+> ErrandRunner
 
 ## Team Members
-> Team Member #1 name
+> Joyce Tran
 
-> Team Member #2 name
+> Jessie Bernardino-Dominguez
