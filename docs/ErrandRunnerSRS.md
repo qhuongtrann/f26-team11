@@ -5,7 +5,7 @@
 **Team:** Joyce Tran - Provider/Runner, Jessie Bernardino-Dominguez - Customer \
 **Course:** CSC 340\
 **Version:** 1.0\
-**Date:** 2026-08-25
+**Date:** 2026-09-18
 
 ---
 
@@ -17,9 +17,9 @@
 - **Provider/Runner:** The runner who accepts and executes the errand task.
 
 **Primary Users / Roles.**
-- **Customer (e.g., Student/Patient/Pet Owner/etc. )** — 1 line goal statement.
+- **Customer (e.g., Student/Patient/Pet Owner/etc. )** — Request errands or small chores to be completed by Runners.
 - **Runner** — Browse open errands, accept/decline task, update order status, view customer statistics.
-- **SysAdmin (optional)** — 1 line goal statement.
+
 
 **Scope (this semester).**
 - User profiles (Customers & Runner)
@@ -44,29 +44,29 @@
 Write each story as: **As a `<role>`, I want `<capability>`, so that `<benefit>`.** Each story includes at least one **Given/When/Then** scenario.
 
 ### 2.1 Customer Stories
-- **US‑1 — <short title>**  
-  _Story:_ As a customer, I want … so that …  
+- **US‑1 — User Profile**  
+  _Story:_ As a customer, I want to create a user profile so that I can place orders  
   _Acceptance:_
   ```gherkin
-  Scenario: <happy path>
-    Given <preconditions>
-    When  <action>
-    Then  <observable outcome>
+  Scenario: Making a profile
+    Given a customer is new to the application
+    When they open the application they are opted to make a profile.
+    Then they fill out the information needed to make an account.
   ```
 
-- **US‑2 — <short title>**  
-  _Story:_ As a customer, I want … so that …  
+- **US‑2 — Customer Reviews**  
+  _Story:_ As a customer, I want to leave a review so that runners can receive feedback.
   _Acceptance:_
   ```gherkin
-  Scenario: <happy path>
-    Given <preconditions>
-    When  <action>
-    Then  <observable outcome>
+  Scenario: Errand/Chore has been completed
+    Given a runner has done the task well
+    When the customer goes to the application they are prompted to leave a review.
+    Then  they can leave a review out of 5 stars and optional commentary
   ```
 
 ### 2.2 Provider Stories
 - **US-20 — Category Filtering**  
-  _Story:_ As a runner, I want to brwse open errands filtered by category so that I can find tasks matching my ability and availability.
+  _Story:_ As a runner, I want to browse open errands filtered by category so that I can find tasks matching my ability and availability.
   _Acceptance:_
   ```gherkin
   Scenario: Filtering open errands by category
