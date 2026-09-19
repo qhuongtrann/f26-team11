@@ -17,7 +17,7 @@
 - **Provider/Runner:** The runner who accepts and executes the errand task.
 
 **Primary Users / Roles.**
-- **Customer (e.g., Student/Patient/Pet Owner/etc. )** — 1 line goal statement.
+- **Customer** — Create/modify profile, request errand services, set up recurring subscriptions, and leave provider reviews.
 - **Runner** — Browse open errands, accept/decline task, update order status, view customer statistics.
 - **SysAdmin (optional)** — 1 line goal statement.
 
