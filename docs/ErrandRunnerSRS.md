@@ -1,8 +1,8 @@
 
 # Requirements – Starter Template
 
-**Project Name:** Your App Name \
-**Team:** Names and roles \
+**Project Name:** ErrandRunner \
+**Team:** Joyce Tran - Provider/Runner, Jessie Bernardino-Dominguez - Customer \
 **Course:** CSC 340\
 **Version:** 1.0\
 **Date:** 2026-08-25
@@ -10,25 +10,31 @@
 ---
 
 ## 1. Overview
-**Vision.** One or two sentences: who this is for, the core problem, and the outcome.
+**Vision.** One or two sentences: ErrandRunner is a web platform connecting neighborhood residents who need minor chores completed with nearby local providers/runners looking to earn some extra income.
 
 **Glossary** Terms used in the project
-- **Term 1:** description.
-- **Term 2:** description
+- **Customer:** The user who needs help with some chores and posts an errand task.
+- **Provider/Runner:** The runner who accepts and executes the errand task.
 
 **Primary Users / Roles.**
 - **Customer (e.g., Student/Patient/Pet Owner/etc. )** — 1 line goal statement.
-- **Provider (e.g., Teacher/Doctor/Pet Sitter/etc. )** — 1 line goal statement.
+- **Runner** — Browse open errands, accept/decline task, update order status, view customer statistics.
 - **SysAdmin (optional)** — 1 line goal statement.
 
 **Scope (this semester).**
-- <capability 1>
-- <capability 2>
-- <capability 3>
+- User profiles (Customers & Runner)
+- Create, edit, and cancel errand requests (Customer)
+- Browse and search avalable errands by category (Runner)
+- Claiming and accepting errand requests (Runner)
+- Status update (Pending, In-progress, Completed) (Runner)
+- Proof of dropoff/completed confirmation (Runner)
+- Reviews and ratings (Customer)
 
 **Out of scope (deferred).**
-- <deferred 1>
-- <deferred 2>
+- In-app chat/messaging
+- Handling electronic payments within the app
+- Multi-stop/destination routing algorithm
+- In-app direct calling
 
 > This document is **requirements‑level** and solution‑neutral; design decisions (UI layouts, API endpoints, schemas) are documented separately.
 
@@ -59,59 +65,60 @@ Write each story as: **As a `<role>`, I want `<capability>`, so that `<benefit>`
   ```
 
 ### 2.2 Provider Stories
-- **US-20 — <short title>**  
-  _Story:_ As a provider, I want … so that …  
+- **US-20 — Category Filtering**  
+  _Story:_ As a runner, I want to brwse open errands filtered by category so that I can find tasks matching my ability and availability.
   _Acceptance:_
   ```gherkin
-  Scenario: <happy path>
-    Given <preconditions>
-    When  <action>
-    Then  <observable outcome>
+  Scenario: Filtering open errands by category
+    Given a runner is on the open task board
+    When  they select a category filter
+    Then  applying category filters returns only matching active errands
   ```
 
-- **US-21 — <short title>**  
-  _Story:_ As a provider, I want … so that …  
+- **US-21 — Viewing Task Compensation**  
+  _Story:_ As a runner, I want to view the offered fee for each requests before claiming it so that I can choose tasks matching my availability and charge.
   _Acceptance:_
   ```gherkin
-  Scenario: <happy path>
-    Given <preconditions>
-    When  <action>
-    Then  <observable outcome>
+  Scenario: Viewing task fee
+    Given a runner views open errand listings
+    When  they review the available task details
+    Then  visibly displays the exact compensation amount of each task
   ```
 
-### 2.3 SysAdmin Stories
-- **US‑30 — <short title>**  
-  _Story:_ As a sysadmin, I want … so that …  
+- **US-22 — Claiming Errand Requests**  
+  _Story:_ As a runner, I want to accept/claim an errand so that the other runners can know it's already been claimed  
   _Acceptance:_
   ```gherkin
-  Scenario: <happy path>
-    Given <preconditions>
-    When  <action>
-    Then  <observable outcome>
+  Scenario: Claiming an open errand
+    Given a runner selects an available task
+    When  they click accept/claim
+    Then  errand status shifts from open to claimed, only one runner can claim the task, and the listing is removed from other runners' available pool.
   ```
 
-- **US‑31 — <short title>**  
-  _Story:_ As a sysadmin, I want … so that …  
+- **US-23 — Task Status Updates & Proof of Drop-off**  
+  _Story:_ As a runner, I want to update the errand status (In-Progres, Completed) and end with a drop-off/completed confirmation so that the customer can track the order's progress.  
   _Acceptance:_
   ```gherkin
-  Scenario: <happy path>
-    Given <preconditions>
-    When  <action>
-    Then  <observable outcome>
+  Scenario: Updating task progress and completion
+    Given a runner is actively fulfilling a claimed task
+    When  they change the status and submit confirmation notes
+    Then  status changed, and completion notes/confirmation timestamp are saved upon finalizing the task
   ```
 
 ---
 
 ## 3. Non‑Functional Requirements (make them measurable)
-- **Performance:** description 
-- **Availability/Reliability:** description
-- **Security/Privacy:** description
-- **Usability:** description
+- **Performance:** Task listings and page loads render rapidly
+- **Availability/Reliability:** The platform must maintain 99.5% operational uptime, with scheduled system maintenance communicated beforehand
+- **Security/Privacy:** The application must enforce robust credential authentication and access controls, ensuring Customer and Runner profile data be securely managed and persisted in the database
+- **Usability:** New Customers/Runners should be able to complete the registration process and start placing/claming orders within 5 minutes without external assistance.
 
 ---
 
 ## 4. Assumptions, Constraints, and Policies
-- list any rules, policies, assumptions, etc.
+- Users must have stable internet access and a modern browser to interact with the platform
+- Monetary and task arrangements outside electronic payment handling are coordinated directly between users
+- The system assumes users provided accurate location and description details when posting tasks.
 
 ---
 
