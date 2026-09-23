@@ -655,7 +655,10 @@ a.btn-link.text-light:after {
   border-radius: 1rem;
 }
 
-.hero-text-container h2,
+.hero-text-container h2 {
+  text-shadow: none;
+}
+
 .hero-text-container p {
   text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
 }
