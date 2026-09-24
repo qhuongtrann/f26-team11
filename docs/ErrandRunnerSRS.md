@@ -21,7 +21,7 @@
 
 
 **Primary Users / Roles.**
-- **Customer (e.g., Student/Patient/Pet Owner/etc. )** — Request errands or small chores to be completed by Runners.
+- **Customer** — Create/modify profile, request errand services, set up recurring subscriptions, and leave provider reviews.
 - **Runner** — Browse open errands, accept/decline task, update order status, view customer statistics.
 
 
