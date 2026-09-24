@@ -26,5 +26,5 @@
     4. Reply to reviews -Respond to constructive feedback and provide solutions to better the services.
 
 ## Live Prototype
-You can view the live interactive prototype here: [https://errandrunner.onrender.com](https://github.com/qhuongtrann/f26-team11)
+You can view the live interactive prototype here: [https://errandrunner.onrender.com](https://errandrunner.onrender.com)
  
