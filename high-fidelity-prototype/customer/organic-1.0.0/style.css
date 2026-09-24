@@ -662,3 +662,6 @@ a.btn-link.text-light:after {
 .hero-text-container p {
   text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
 }
+.text-primary {
+  color: var(--bs-primary) !important;
+}

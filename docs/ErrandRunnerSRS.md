@@ -75,7 +75,26 @@ Write each story as: **As a `<role>`, I want `<capability>`, so that `<benefit>`
     When the customer goes to the application they are prompted to leave a review.
     Then  they can leave a review out of 5 stars and optional commentary
   ```
+- **US‑3 — Place Order**  
+  _Story:_ As a customer, I want to place an order, so it can be fulfilled.  
+  _Acceptance:_
+  ```gherkin
+  Scenario: Placing an order.
+    Given a customer is in need of an order
+    When they open the application they are opted to place an order.
+    Then they fill out the information needed for tneir order.
+  ```
 
+
+- **US‑4 — Cancel my order**  
+  _Story:_ As a customer, I want to cancel an order so that I can change it or in case I've changed my mind.
+  _Acceptance:_
+  ```gherkin
+  Scenario: Cancelling an order
+    Given a customer has changed their mind
+    When the customer goes to their order, they are opted to cancel if need be.
+    Then  they can change their order or out right not place an order.
+  ```
 
 ### 2.2 Provider Stories
 - **US-20 — Category Filtering**  
