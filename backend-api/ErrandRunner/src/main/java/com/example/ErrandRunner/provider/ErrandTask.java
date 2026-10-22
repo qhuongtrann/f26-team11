@@ -2,6 +2,7 @@ package com.example.ErrandRunner.provider;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import customer.Customer;
 
 @Entity
 @Table(name = "tasks")
@@ -27,9 +28,15 @@ public class ErrandTask {
 
     private String proofNotes;
 
+
+    
     @ManyToOne
     @JoinColumn(name = "provider_id")
     private Provider provider;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     public ErrandTask() 
     {
@@ -120,5 +127,14 @@ public class ErrandTask {
     public void setProvider(Provider provider) 
     {
         this.provider = provider;
+
     }
+
+    public Customer getCustomer() {
+    return customer;
+}
+
+    public void setCustomer(Customer customer) {
+    this.customer = customer;
+}
 }
