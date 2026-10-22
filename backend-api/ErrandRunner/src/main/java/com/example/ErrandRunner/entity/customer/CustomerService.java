@@ -1,5 +1,4 @@
-package customer;
-
+package com.example.ErrandRunner.entity.customer;
 import java.util.List;
 
 import org.springframework.stereotype.Service;

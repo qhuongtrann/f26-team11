@@ -1,4 +1,4 @@
-package customer;
+package com.example.ErrandRunner.entity.customer;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
