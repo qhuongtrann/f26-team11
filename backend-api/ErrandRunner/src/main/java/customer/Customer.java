@@ -1,13 +1,6 @@
 package customer;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.example.ErrandRunner.provider.ErrandTask;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -19,23 +12,15 @@ public class Customer {
     private Long customerId;
 
     @NotBlank
-    private String firstName;
+    private String name;
 
-    @NotBlank
-    private String lastName;
-
-    @Email
     @NotBlank
     private String email;
 
     @NotBlank
-    private String phoneNumber;
+    private String password;
 
     private String address;
-
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<ErrandTask> tasks = new ArrayList<>();
 
     public Customer() {
     }
@@ -44,20 +29,12 @@ public class Customer {
         return customerId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -68,12 +45,12 @@ public class Customer {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getAddress() {
@@ -82,13 +59,5 @@ public class Customer {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public List<ErrandTask> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<ErrandTask> tasks) {
-        this.tasks = tasks;
     }
 }
