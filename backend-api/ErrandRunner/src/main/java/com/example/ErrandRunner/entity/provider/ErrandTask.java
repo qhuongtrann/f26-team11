@@ -1,4 +1,4 @@
-package com.example.ErrandRunner.provider;
+package com.example.ErrandRunner.entity.provider;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
