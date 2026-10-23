@@ -2,7 +2,7 @@
 
 ## UML Class Diagram
 
-![UML Diagram](docs/uml-diagram.png)
+![UML Diagram](../docs/uml-diagram.png)
 
 ---
 
