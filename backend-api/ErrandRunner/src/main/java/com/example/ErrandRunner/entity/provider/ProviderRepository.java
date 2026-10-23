@@ -1,4 +1,4 @@
-package com.example.ErrandRunner.provider;
+package com.example.ErrandRunner.entity.provider;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
