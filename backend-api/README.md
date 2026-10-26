@@ -14,8 +14,32 @@
 
 Local:
 
-```
+```text
 http://localhost:8080/api
+```
+
+Production (Render):
+
+```text
+https://errandrunner-api.onrender.com/api
+```
+
+---
+
+## Deployment
+
+The application is deployed on Render and uses a Neon PostgreSQL database.
+
+Live API:
+
+```text
+https://errandrunner-api.onrender.com/api
+```
+
+Example Endpoint:
+
+```text
+https://errandrunner-api.onrender.com/api/providers
 ```
 
 ---
@@ -101,7 +125,7 @@ http://localhost:8080/api
 | GET | /api/tasks/{id} | Get task by ID | 200 OK |
 | PUT | /api/tasks/{id} | Update a task | 200 OK |
 | DELETE | /api/tasks/{id} | Delete a task | 204 No Content |
-| PUT | /api/tasks/{taskId}/claim/{providerId} | Claim a task | 200 OK |
+| PUT | /api/tasks/{taskId}/claim/{providerId} | Assign a provider to a task | 200 OK |
 
 ### Example Task Request
 
@@ -114,3 +138,120 @@ http://localhost:8080/api
   "fee": 20.0,
   "status": "OPEN",
   "proofNotes": ""
+}
+```
+
+### Example Task Response
+
+```json
+{
+  "taskId": 1,
+  "title": "Pick Up Groceries",
+  "description": "Need milk and bread",
+  "category": "Shopping",
+  "location": "Greensboro",
+  "fee": 20.0,
+  "status": "OPEN",
+  "proofNotes": "",
+  "provider": null
+}
+```
+
+---
+
+## Claim Task Example
+
+### Request
+
+```http
+PUT /api/tasks/1/claim/1
+```
+
+### Response
+
+```json
+{
+  "taskId": 1,
+  "title": "Pick Up Groceries",
+  "description": "Need milk and bread",
+  "category": "Shopping",
+  "location": "Greensboro",
+  "fee": 20.0,
+  "status": "CLAIMED",
+  "proofNotes": "",
+  "provider": {
+    "providerId": 1,
+    "name": "Joyce",
+    "email": "joyce@email.com",
+    "password": "password123",
+    "age": 21,
+    "rating": 5.0
+  }
+}
+```
+
+---
+
+## Technologies Used
+
+- Java 25
+- Spring Boot
+- Spring Data JPA
+- PostgreSQL
+- Neon Database
+- Maven
+- Docker
+- Render
+
+---
+
+## Domain Model
+
+### Customer
+
+- customerId
+- name
+- email
+- password
+- address
+
+### Provider
+
+- providerId
+- name
+- email
+- password
+- age
+- rating
+
+### ErrandTask
+
+- taskId
+- title
+- description
+- category
+- location
+- fee
+- status
+- proofNotes
+
+### Relationships
+
+- One Provider can claim many ErrandTasks.
+- Each ErrandTask can be assigned to one Provider.
+
+---
+
+## Render Deployment
+
+Public API URL:
+
+```text
+https://errandrunner-api.onrender.com/api
+```
+
+Test Endpoint:
+
+```text
+https://errandrunner-api.onrender.com/api/providers
+```
