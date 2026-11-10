@@ -1,5 +1,6 @@
 package com.example.ErrandRunner.entity.customer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import java.util.ArrayList;
@@ -26,8 +27,9 @@ public class Customer {
 
     private String address;
 
+    @JsonIgnore // avoids infinite JSON recursion: Customer -> tasks -> customer -> ...
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-private List<ErrandTask> tasks = new ArrayList<>();
+    private List<ErrandTask> tasks = new ArrayList<>();
 
     public Customer() {
     }

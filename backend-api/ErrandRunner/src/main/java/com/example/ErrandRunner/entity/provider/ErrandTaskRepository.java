@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ErrandTaskRepository extends JpaRepository<ErrandTask, Long> 
+public interface ErrandTaskRepository extends JpaRepository<ErrandTask, Long>
 {
 
     List<ErrandTask> findByCategoryIgnoreCase(String category);
 
     List<ErrandTask> findByStatusIgnoreCase(String status);
+
+    List<ErrandTask> findByCustomer_CustomerIdOrderByTaskIdDesc(Long customerId);
 }
