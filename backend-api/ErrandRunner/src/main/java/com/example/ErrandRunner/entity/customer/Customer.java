@@ -2,6 +2,10 @@ package com.example.ErrandRunner.entity.customer;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.ErrandRunner.entity.provider.ErrandTask;
 
 @Entity
 @Table(name = "customers")
@@ -21,6 +25,9 @@ public class Customer {
     private String password;
 
     private String address;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+private List<ErrandTask> tasks = new ArrayList<>();
 
     public Customer() {
     }
@@ -60,4 +67,11 @@ public class Customer {
     public void setAddress(String address) {
         this.address = address;
     }
+    public List<ErrandTask> getTasks() {
+    return tasks;
+}
+
+    public void setTasks(List<ErrandTask> tasks) {
+    this.tasks = tasks;
+}
 }

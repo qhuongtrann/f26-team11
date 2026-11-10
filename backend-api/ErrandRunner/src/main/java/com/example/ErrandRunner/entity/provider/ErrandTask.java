@@ -1,5 +1,7 @@
 package com.example.ErrandRunner.entity.provider;
 
+import com.example.ErrandRunner.entity.customer.Customer;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -31,94 +33,87 @@ public class ErrandTask {
     @JoinColumn(name = "provider_id")
     private Provider provider;
 
-    public ErrandTask() 
-    {
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    public ErrandTask() {
 
     }
 
-    public Long getTaskId() 
-    {
+    public Long getTaskId() {
         return taskId;
     }
 
-    public String getTitle() 
-    {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) 
-    {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getDescription() 
-    {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) 
-    {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public String getCategory() 
-    {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(String category) 
-    {
+    public void setCategory(String category) {
         this.category = category;
     }
 
-    public String getLocation() 
-    {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(String location) 
-    {
+    public void setLocation(String location) {
         this.location = location;
     }
 
-
-    public Double getFee() 
-    {
+    public Double getFee() {
         return fee;
     }
 
-    public void setFee(Double fee) 
-    {
+    public void setFee(Double fee) {
         this.fee = fee;
     }
 
-    public String getStatus() 
-    {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) 
-    {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getProofNotes() 
-    {
+    public String getProofNotes() {
         return proofNotes;
     }
 
-    public void setProofNotes(String proofNotes) 
-    {
+    public void setProofNotes(String proofNotes) {
         this.proofNotes = proofNotes;
     }
 
-    public Provider getProvider() 
-    {
+    public Provider getProvider() {
         return provider;
     }
 
-    public void setProvider(Provider provider) 
-    {
+    public void setProvider(Provider provider) {
         this.provider = provider;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
