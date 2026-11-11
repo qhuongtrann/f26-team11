@@ -46,9 +46,11 @@ Back to Dashboard
 <form action="/provider/task/${task.taskId}/complete"
       method="post">
 
-    <button class="btn btn-success btn-sm">
-        Mark Completed
-    </button>
+<button class="btn btn-success btn-sm">
+
+Mark Completed
+
+</button>
 
 </form>
 

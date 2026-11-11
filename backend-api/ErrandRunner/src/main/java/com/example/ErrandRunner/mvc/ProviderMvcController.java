@@ -63,7 +63,8 @@ public class ProviderMvcController {
     public String completeTask(
             @PathVariable Long id) {
 
-        ErrandTask task = taskService.findById(id);
+        ErrandTask task =
+                taskService.findById(id);
 
         task.setStatus("COMPLETED");
 
