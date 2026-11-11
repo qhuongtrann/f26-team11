@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import com.example.ErrandRunner.entity.review.Review;
 import com.example.ErrandRunner.repository.ReviewRepository;
@@ -17,9 +19,10 @@ public class ReviewController {
     private ReviewRepository reviewRepository;
 
     @GetMapping("/new")
-    public String showReviewForm() {
-        return "review";
-    }
+@ResponseBody
+public String showReviewForm() {
+    return "REVIEW CONTROLLER WORKS";
+}
 
     @PostMapping("/create")
     public String createReview(Review review) {
