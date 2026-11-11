@@ -25,26 +25,23 @@ public class ProviderMvcController {
     }
 
     @GetMapping("/provider/dashboard")
-    public String dashboard(
-            @RequestParam(required = false) String status,
-            Model model) {
+public String dashboard(
+        @RequestParam(required = false) String status,
+        Model model) {
 
-        String filterStatus = status;
+    String filterStatus = status;
 
-        if (filterStatus == null || filterStatus.isBlank()) {
-            filterStatus = "OPEN";
-        }
-
-        model.addAttribute(
-                "tasks",
-                taskService.search(null, filterStatus));
-
-        model.addAttribute(
-                "currentStatus",
-                filterStatus);
-
-        return "provider/runner-dashboard";
+    if (filterStatus == null || filterStatus.isBlank()) {
+        filterStatus = "OPEN";
     }
+
+    model.addAttribute(
+            "tasks",
+            taskService.search(null, filterStatus));
+
+    return "provider/runner-dashboard";
+}
+
 
     @GetMapping("/provider/task/{id}")
     public String taskDetails(
