@@ -23,7 +23,7 @@ public class ProviderMvcController {
 
         model.addAttribute(
                 "tasks",
-                taskService.search(null, null));
+                taskService.search(null, "OPEN"));
 
         return "provider/runner-dashboard";
     }
