@@ -97,47 +97,85 @@ Write each story as: **As a `<role>`, I want `<capability>`, so that `<benefit>`
   ```
 
 ### 2.2 Provider Stories
-- **US-20 — Category Filtering**  
-  _Story:_ As a runner, I want to browse open errands filtered by category so that I can find tasks matching my ability and availability.
+- **US-20 — Runner Profile Management**  
+  _Story:_ As a runner, I want to create and manage my runner profile so that I can participate in the ErrandRunner platform and claim available errands.
   _Acceptance:_
   ```gherkin
-  Scenario: Filtering open errands by category
-    Given a runner is on the open task board
-    When  they select a category filter
-    Then  applying category filters returns only matching active errands
+  Scenario: Creating a runner profile
+    Given a new runner wants to join the platform
+    When  they submit their registration information
+    Then  a runner profile is created and stored in the database
+
+  Scenario: Updating a runner profile
+    Given a runner already has a profile
+    When they update their profile information
+    Then the updated information is saved successfully
   ```
 
 
-- **US-21 — Viewing Task Compensation**  
-  _Story:_ As a runner, I want to view the offered fee for each requests before claiming it so that I can choose tasks matching my availability and charge.
+- **US-21 — Browse & Filter Available Tasks**  
+  _Story:_ As a runner, I want to browse available errands and filter them by category so that I can find tasks that match my interests and availability.
   _Acceptance:_
   ```gherkin
-  Scenario: Viewing task fee
-    Given a runner views open errand listings
-    When  they review the available task details
-    Then  visibly displays the exact compensation amount of each task
+  Scenario: Viewing available errands
+    Given open errands exist in the system
+    When a runner requests the list of errands
+    Then all available errands are displayed
+
+  Scenario: Filtering errands by category
+    Given errands exist in multiple categories
+    When a runner filters errands by category
+    Then only errands matching the selected category are returned
   ```
 
 
-- **US-22 — Claiming Errand Requests**  
-  _Story:_ As a runner, I want to accept/claim an errand so that the other runners can know it's already been claimed  
+- **US-22 — View Task Details & Compensation**  
+  _Story:_ As a runner, I want to view the details and compensation of each errand before claiming it so that I can decide whether to accept the task. 
   _Acceptance:_
   ```gherkin
-  Scenario: Claiming an open errand
-    Given a runner selects an available task
-    When  they click accept/claim
-    Then  errand status shifts from open to claimed, only one runner can claim the task, and the listing is removed from other runners' available pool.
+  Scenario: Viewing task details
+    Given a runner is browsing available errands
+    When the runner selects an errand
+    Then the task description, location, category, and compensation are displayed
+
+  Scenario: Viewing compensation
+    Given an errand is available
+    When a runner views the errand details
+    Then the compensation amount is displayed
   ```
 
 
-- **US-23 — Task Status Updates & Proof of Drop-off**  
-  _Story:_ As a runner, I want to update the errand status (In-Progres, Completed) and end with a drop-off/completed confirmation so that the customer can track the order's progress.  
+- **US-23 — Claim an Errand**  
+  _Story:_ As a runner, I want to claim an available errand so that I can complete the task and prevent duplicate claims by other runners.  
   _Acceptance:_
   ```gherkin
-  Scenario: Updating task progress and completion
-    Given a runner is actively fulfilling a claimed task
-    When  they change the status and submit confirmation notes
-    Then  status changed, and completion notes/confirmation timestamp are saved upon finalizing the task
+  Scenario: Claiming an available task
+    Given an errand is available
+    When a runner claims the errand
+    Then the task is assigned to that runner
+    And the task status changes to CLAIMED
+
+  Scenario: Viewing claimed tasks
+    Given a runner has claimed errands
+    When the runner views their claimed tasks
+    Then all assigned errands are displayed
+  ```
+
+
+- **US-24 — Update Task Status**  
+  _Story:_ As a runner, I want to update the status of an assigned errand so that customers can track the progress of the task.
+  _Acceptance:_
+  ```gherkin
+  Scenario: Updating task progress
+    Given a runner has claimed an errand
+    When the runner updates the task status
+    Then the updated status is saved in the database
+
+  Scenario: Completing a task
+    Given a runner has finished an errand
+    When the runner marks the task as completed
+    Then the task status changes to COMPLETED
+    And any completion notes are saved
   ```
 
 
