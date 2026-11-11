@@ -12,6 +12,13 @@
 
 <h1>Available Tasks</h1>
 
+<a href="/provider/claimed"
+   class="btn btn-dark mb-3">
+
+    My Claimed Tasks
+
+</a>
+
 <table class="table table-striped">
 
     <thead>
@@ -44,6 +51,7 @@
 
             </a>
         </td>
+
     </tr>
 
     </#list>

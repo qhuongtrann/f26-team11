@@ -15,29 +15,40 @@
 <hr>
 
 <p>
-    <strong>Description:</strong>
-    ${task.description}
+<strong>Description:</strong>
+${task.description}
 </p>
 
 <p>
-    <strong>Category:</strong>
-    ${task.category!""}
+<strong>Category:</strong>
+${task.category!""}
 </p>
 
 <p>
-    <strong>Location:</strong>
-    ${task.location!""}
+<strong>Location:</strong>
+${task.location!""}
 </p>
 
 <p>
-    <strong>Fee:</strong>
-    $${task.fee!""}
+<strong>Fee:</strong>
+$${task.fee!""}
 </p>
 
 <p>
-    <strong>Status:</strong>
-    ${task.status!""}
+<strong>Status:</strong>
+${task.status!""}
 </p>
+
+<form action="/provider/task/${task.taskId}/claim"
+      method="post">
+
+    <button class="btn btn-success">
+        Claim Task
+    </button>
+
+</form>
+
+<br>
 
 <a href="/provider/dashboard"
    class="btn btn-secondary">
