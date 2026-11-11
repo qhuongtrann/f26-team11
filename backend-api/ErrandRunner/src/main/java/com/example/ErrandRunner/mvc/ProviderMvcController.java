@@ -19,16 +19,22 @@ public class ProviderMvcController {
         this.taskService = taskService;
     }
 
+    @GetMapping("/")
+    public String home() {
+        return "redirect:/provider/dashboard";
+    }
+
     @GetMapping("/provider/dashboard")
     public String dashboard(
-        @RequestParam(required = false) String status,
-        Model model) 
-        {
+            @RequestParam(required = false) String status,
+            Model model) {
 
-            model.addAttribute("tasks", taskService.search(null, status));
+        model.addAttribute(
+                "tasks",
+                taskService.search(null, status));
 
-            return "provider/runner-dashboard";
-        }
+        return "provider/runner-dashboard";
+    }
 
     @GetMapping("/provider/task/{id}")
     public String taskDetails(
@@ -76,12 +82,11 @@ public class ProviderMvcController {
     }
 
     @PostMapping("/provider/task/{id}/cancel")
-public String cancelTask(
-        @PathVariable Long id) {
+    public String cancelTask(
+            @PathVariable Long id) {
 
-    taskService.delete(id);
+        taskService.delete(id);
 
-    return "redirect:/provider/dashboard";
-}
-
+        return "redirect:/provider/dashboard";
+    }
 }
