@@ -14,48 +14,48 @@
 
 <a href="/provider/claimed"
    class="btn btn-dark mb-3">
-
     My Claimed Tasks
-
 </a>
 
 <table class="table table-striped">
 
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Location</th>
-        <th>Fee</th>
-        <th>Status</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
+<thead>
+<tr>
+    <th>Title</th>
+    <th>Category</th>
+    <th>Location</th>
+    <th>Fee</th>
+    <th>Status</th>
+    <th>Actions</th>
+</tr>
+</thead>
 
-    <tbody>
+<tbody>
 
-    <#list tasks as task>
+<#list tasks as task>
 
-    <tr>
-        <td>${task.title}</td>
-        <td>${task.category!""}</td>
-        <td>${task.location!""}</td>
-        <td>${task.fee!""}</td>
-        <td>${task.status!""}</td>
+<#if task.status?? && task.status?upper_case == "OPEN">
 
-        <td>
-            <a href="/provider/task/${task.taskId}"
-               class="btn btn-primary btn-sm">
+<tr>
+    <td>${task.title}</td>
+    <td>${task.category!""}</td>
+    <td>${task.location!""}</td>
+    <td>${task.fee!""}</td>
+    <td>${task.status!""}</td>
 
-                View Details
+    <td>
+        <a href="/provider/task/${task.taskId}"
+           class="btn btn-primary btn-sm">
+            View Details
+        </a>
+    </td>
+</tr>
 
-            </a>
-        </td>
-    </tr>
+</#if>
 
-    </#list>
+</#list>
 
-    </tbody>
+</tbody>
 
 </table>
 
