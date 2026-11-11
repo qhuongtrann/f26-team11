@@ -3,6 +3,7 @@
 
 <head>
     <title>Runner Dashboard</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
 </head>
@@ -20,6 +21,7 @@
         <th>Location</th>
         <th>Fee</th>
         <th>Status</th>
+        <th>Actions</th>
     </tr>
     </thead>
 
@@ -33,6 +35,15 @@
         <td>${task.location!""}</td>
         <td>${task.fee!""}</td>
         <td>${task.status!""}</td>
+
+        <td>
+            <a href="/provider/task/${task.taskId}"
+               class="btn btn-primary btn-sm">
+
+                View Details
+
+            </a>
+        </td>
     </tr>
 
     </#list>
