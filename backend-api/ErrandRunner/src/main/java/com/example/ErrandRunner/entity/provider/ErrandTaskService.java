@@ -76,8 +76,15 @@ public class ErrandTaskService {
 
         ErrandTask task = findById(taskId);
 
+        if (!"OPEN".equalsIgnoreCase(task.getStatus())) 
+            {
+                throw new IllegalStateException(
+                        "Only OPEN tasks can be claimed.");
+            }
+
         Provider provider = providerRepository.findById(providerId)
-                .orElseThrow(() -> new ProviderNotFoundException(providerId));
+                .orElseThrow(() ->
+                        new ProviderNotFoundException(providerId));
 
         task.setProvider(provider);
 
