@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProviderMvcController {
@@ -19,14 +20,15 @@ public class ProviderMvcController {
     }
 
     @GetMapping("/provider/dashboard")
-    public String dashboard(Model model) {
+    public String dashboard(
+        @RequestParam(required = false) String status,
+        Model model) 
+        {
 
-        model.addAttribute(
-                "tasks",
-                taskService.search(null, "OPEN"));
+            model.addAttribute("tasks", taskService.search(null, status));
 
-        return "provider/runner-dashboard";
-    }
+            return "provider/runner-dashboard";
+        }
 
     @GetMapping("/provider/task/{id}")
     public String taskDetails(
