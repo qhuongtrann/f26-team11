@@ -25,9 +25,12 @@ public class ProviderMvcController {
     }
 
     @GetMapping("/provider/dashboard")
-    public String dashboard(
-            @RequestParam(required = false) String status,
-            Model model) {
+    public String dashboard(@RequestParam(required = false) String status, Model model) 
+    {
+
+        if (status == null || status.isBlank()) {
+            status = "OPEN";
+        }
 
         model.addAttribute(
                 "tasks",

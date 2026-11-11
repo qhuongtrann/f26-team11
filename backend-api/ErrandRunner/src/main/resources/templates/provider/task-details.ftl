@@ -39,6 +39,8 @@ $${task.fee!""}
 ${task.status!""}
 </p>
 
+<#if task.status == "OPEN">
+
 <form action="/provider/task/${task.taskId}/claim"
       method="post">
 
@@ -47,6 +49,8 @@ ${task.status!""}
     </button>
 
 </form>
+
+</#if>
 
 <br>
 
