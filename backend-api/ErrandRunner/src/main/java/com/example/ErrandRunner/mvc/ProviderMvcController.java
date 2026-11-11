@@ -72,4 +72,14 @@ public class ProviderMvcController {
 
         return "redirect:/provider/claimed";
     }
+
+    @PostMapping("/provider/task/{id}/cancel")
+public String cancelTask(
+        @PathVariable Long id) {
+
+    taskService.delete(id);
+
+    return "redirect:/provider/dashboard";
+}
+
 }

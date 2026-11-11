@@ -44,11 +44,24 @@ Back to Dashboard
 <td>
 
 <form action="/provider/task/${task.taskId}/complete"
-      method="post">
+      method="post"
+      style="display:inline;">
 
 <button class="btn btn-success btn-sm">
 
 Mark Completed
+
+</button>
+
+</form>
+
+<form action="/provider/task/${task.taskId}/cancel"
+      method="post"
+      style="display:inline;">
+
+<button class="btn btn-danger btn-sm">
+
+Cancel Task
 
 </button>
 
