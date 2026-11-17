@@ -1,65 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Task Details</title>
+    <title>ErrandRunner - Task Details</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
           rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/vendor.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
-<body class="container mt-5">
+<body>
 
-<h1>${task.title}</h1>
+<header>
+    <div class="container-fluid">
+        <div class="row py-3 border-bottom">
 
-<hr>
+            <div class="col-lg-3">
+                <h2 class="text-primary fw-bold mb-0">
+                    ErrandRunner
+                </h2>
+            </div>
 
-<p>
-<strong>Description:</strong>
-${task.description}
-</p>
+            <div class="col-lg-9">
+                <ul class="navbar-nav list-unstyled d-flex flex-row gap-4 justify-content-end align-items-center mb-0 fw-bold text-uppercase">
 
-<p>
-<strong>Category:</strong>
-${task.category!""}
-</p>
+                    <li>
+                        <a href="/provider/dashboard"
+                           class="nav-link">
+                            Browse Tasks
+                        </a>
+                    </li>
 
-<p>
-<strong>Location:</strong>
-${task.location!""}
-</p>
+                    <li>
+                        <a href="/provider/claimed"
+                           class="nav-link">
+                            My Claimed Tasks
+                        </a>
+                    </li>
 
-<p>
-<strong>Fee:</strong>
-$${task.fee!""}
-</p>
+                </ul>
+            </div>
 
-<p>
-<strong>Status:</strong>
-${task.status!""}
-</p>
+        </div>
+    </div>
+</header>
 
-<#if task.status == "OPEN">
+<section class="py-5 bg-light">
 
-<form action="/provider/task/${task.taskId}/claim"
-      method="post">
+    <div class="container-lg">
 
-    <button class="btn btn-success">
-        Claim Task
-    </button>
+        <div class="row justify-content-center">
 
-</form>
+            <div class="col-lg-8">
 
-</#if>
+                <div class="product-item">
 
-<br>
+                    <figure class="mb-4">
+                        <img src="/images/product-thumb-1.jpg"
+                             alt="Task"
+                             class="tab-image">
+                    </figure>
 
-<a href="/provider/dashboard"
-   class="btn btn-secondary">
+                    <div class="text-center">
 
-    Back to Dashboard
+                        <h2 class="mb-3">
+                            ${task.title}
+                        </h2>
 
-</a>
+                        <p class="lead text-muted">
+                            ${task.description}
+                        </p>
+
+                        <hr>
+
+                        <div class="row mt-4">
+
+                            <div class="col-md-6 mb-3">
+                                <strong>Category</strong>
+                                <p>${task.category!""}</p>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <strong>Location</strong>
+                                <p>${task.location!""}</p>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <strong>Fee</strong>
+                                <p>$${task.fee!""}</p>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <strong>Status</strong>
+                                <p>${task.status!""}</p>
+                            </div>
+
+                        </div>
+
+                        <#if task.status?upper_case == "OPEN">
+
+                        <form action="/provider/task/${task.taskId}/claim"
+                              method="post">
+
+                            <button type="submit"
+                                    class="btn btn-primary btn-lg">
+                                Claim Task
+                            </button>
+
+                        </form>
+
+                        </#if>
+
+                        <a href="/provider/dashboard"
+                           class="btn btn-outline-secondary mt-3">
+                            Back to Dashboard
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="py-5">
+    <div class="container-lg text-center">
+        <p class="text-muted mb-0">
+            © 2026 ErrandRunner. All rights reserved.
+        </p>
+    </div>
+</footer>
 
 </body>
 </html>

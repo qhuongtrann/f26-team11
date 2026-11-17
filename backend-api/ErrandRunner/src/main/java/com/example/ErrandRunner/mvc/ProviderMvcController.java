@@ -25,23 +25,16 @@ public class ProviderMvcController {
     }
 
     @GetMapping("/provider/dashboard")
-public String dashboard(
-        @RequestParam(required = false) String status,
-        Model model) {
+    public String dashboard(
+            @RequestParam(required = false) String status,
+            Model model) {
 
-    String filterStatus = status;
+        model.addAttribute(
+                "tasks",
+                taskService.search(null, status));
 
-    if (filterStatus == null || filterStatus.isBlank()) {
-        filterStatus = "OPEN";
+        return "provider/runner-dashboard";
     }
-
-    model.addAttribute(
-            "tasks",
-            taskService.search(null, filterStatus));
-
-    return "provider/runner-dashboard";
-}
-
 
     @GetMapping("/provider/task/{id}")
     public String taskDetails(
@@ -61,15 +54,15 @@ public String dashboard(
 
         taskService.claimTask(id, 1L);
 
-        return "redirect:/provider/dashboard";
+        return "redirect:/provider/claimed";
     }
 
     @GetMapping("/provider/claimed")
-    public String claimedTasks(Model model) {
-
+    public String claimedTasks(Model model) 
+    {
         model.addAttribute(
                 "tasks",
-                taskService.search(null, "CLAIMED"));
+                taskService.search(null, null));
 
         return "provider/my-claimed-tasks";
     }
@@ -92,7 +85,14 @@ public String dashboard(
     public String cancelTask(
             @PathVariable Long id) {
 
-        taskService.delete(id);
+        ErrandTask task =
+                taskService.findById(id);
+
+        task.setStatus("OPEN");
+
+        task.setProvider(null);
+
+        taskService.update(id, task);
 
         return "redirect:/provider/dashboard";
     }
