@@ -1,65 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Task Details</title>
+    <title>ErrandRunner - Task Details</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
           rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/vendor.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
-<body class="container mt-5">
+<body>
 
-<h1>${task.title}</h1>
+<header>
+    <div class="container-fluid">
+        <div class="row py-3 border-bottom">
 
-<hr>
+            <div class="col-lg-3">
+                <h2 class="text-primary fw-bold mb-0">
+                    ErrandRunner
+                </h2>
+            </div>
 
-<p>
-<strong>Description:</strong>
-${task.description}
-</p>
+            <div class="col-lg-9">
+                <ul class="navbar-nav list-unstyled d-flex flex-row gap-4 justify-content-end align-items-center mb-0 fw-bold text-uppercase">
+                    <li>
+                        <a href="/provider/dashboard"
+                           class="nav-link">
+                            Browse Tasks
+                        </a>
+                    </li>
 
-<p>
-<strong>Category:</strong>
-${task.category!""}
-</p>
+                    <li>
+                        <a href="/provider/claimed"
+                           class="nav-link">
+                            My Claimed Tasks
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-<p>
-<strong>Location:</strong>
-${task.location!""}
-</p>
+        </div>
+    </div>
+</header>
 
-<p>
-<strong>Fee:</strong>
-$${task.fee!""}
-</p>
+<section class="py-5 bg-light">
 
-<p>
-<strong>Status:</strong>
-${task.status!""}
-</p>
+    <div class="container-lg">
 
-<#if task.status == "OPEN">
+        <div class="row justify-content-center">
 
-<form action="/provider/task/${task.taskId}/claim"
-      method="post">
+            <div class="col-md-8">
 
-    <button class="btn btn-success">
-        Claim Task
-    </button>
+                <div class="product-item">
 
-</form>
+                    <figure>
+                        <img src="/images/product-thumb-1.jpg"
+                             alt="Task"
+                             class="tab-image">
+                    </figure>
 
-</#if>
+                    <div class="text-center">
 
-<br>
+                        <h2>${task.title}</h2>
 
-<a href="/provider/dashboard"
-   class="btn btn-secondary">
+                        <p class="mt-3">
+                            ${task.description}
+                        </p>
 
-    Back to Dashboard
+                        <p>
+                            <strong>Category:</strong>
+                            ${task.category!""}
+                        </p>
 
-</a>
+                        <p>
+                            <strong>Location:</strong>
+                            ${task.location!""}
+                        </p>
+
+                        <p>
+                            <strong>Fee:</strong>
+                            $${task.fee!""}
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong>
+                            ${task.status!""}
+                        </p>
+
+                        <#if task.status?upper_case == "OPEN">
+
+                        <form action="/provider/task/${task.taskId}/claim"
+                              method="post">
+
+                            <button type="submit"
+                                    class="btn btn-primary mt-3">
+                                Claim Task
+                            </button>
+
+                        </form>
+
+                        </#if>
+
+                        <a href="/provider/dashboard"
+                           class="btn btn-secondary mt-3">
+                            Back to Dashboard
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 </body>
 </html>
