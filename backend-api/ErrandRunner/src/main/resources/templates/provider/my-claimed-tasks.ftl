@@ -1,82 +1,161 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <title>ErrandRunner - My Claimed Tasks</title>
 
-<title>My Claimed Tasks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 
+    <link rel="stylesheet" href="/css/vendor.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
-<body class="container mt-5">
+<body>
 
-<h1>My Claimed Tasks</h1>
+<header>
+    <div class="container-fluid">
+        <div class="row py-3 border-bottom">
 
-<a href="/provider/dashboard"
-   class="btn btn-secondary mb-3">
+            <div class="col-lg-3">
+                <h2 class="text-primary fw-bold mb-0">
+                    ErrandRunner
+                </h2>
+            </div>
 
-Back to Dashboard
+            <div class="col-lg-9">
+                <ul class="navbar-nav list-unstyled d-flex flex-row gap-4 justify-content-end align-items-center mb-0 fw-bold text-uppercase">
 
-</a>
+                    <li>
+                        <a href="/provider/dashboard"
+                           class="nav-link">
+                            Browse Tasks
+                        </a>
+                    </li>
 
-<table class="table table-striped">
+                    <li>
+                        <a href="/provider/claimed"
+                           class="nav-link text-primary">
+                            My Claimed Tasks
+                        </a>
+                    </li>
 
-<thead>
-<tr>
-<th>Title</th>
-<th>Status</th>
-<th>Actions</th>
-</tr>
-</thead>
+                </ul>
+            </div>
 
-<tbody>
+        </div>
+    </div>
+</header>
 
-<#list tasks as task>
+<section class="py-5 bg-light">
 
-<tr>
+    <div class="container-lg">
 
-<td>${task.title}</td>
+        <div class="section-header mb-4">
+            <h2 class="section-title">
+                My Claimed Tasks
+            </h2>
+        </div>
 
-<td>${task.status}</td>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
 
-<td>
+            <#list tasks as task>
 
-<form action="/provider/task/${task.taskId}/complete"
-      method="post"
-      style="display:inline;">
+            <div class="col">
 
-<button class="btn btn-success btn-sm">
+                <div class="product-item h-100">
 
-Mark Completed
+                    <figure>
+                        <img src="/images/product-thumb-1.jpg"
+                             alt="Task"
+                             class="tab-image">
+                    </figure>
 
-</button>
+                    <div class="d-flex flex-column text-center">
 
-</form>
+                        <h3 class="fs-6 fw-normal">
+                            ${task.title}
+                        </h3>
 
-<form action="/provider/task/${task.taskId}/cancel"
-      method="post"
-      style="display:inline;">
+                        <div class="text-muted fs-7 mb-2">
+                            📍 ${task.location!""}
+                        </div>
 
-<button class="btn btn-danger btn-sm">
+                        <div class="d-flex justify-content-center align-items-center gap-2 my-2">
 
-Cancel Task
+                            <span class="text-dark fw-semibold">
+                                $${task.fee!""}
+                            </span>
 
-</button>
+                            <#if task.status?upper_case == "CLAIMED">
+                                <span class="badge bg-warning text-dark">
+                                    ${task.status}
+                                </span>
+                            <#elseif task.status?upper_case == "COMPLETED">
+                                <span class="badge bg-success">
+                                    ${task.status}
+                                </span>
+                            <#else>
+                                <span class="badge bg-secondary">
+                                    ${task.status}
+                                </span>
+                            </#if>
 
-</form>
+                        </div>
 
-</td>
+                        <div class="p-3">
 
-</tr>
+                            <form action="/provider/task/${task.taskId}/complete"
+                                  method="post"
+                                  class="mb-2">
 
-</#list>
+                                <button type="submit"
+                                        class="btn btn-success w-100">
 
-</tbody>
+                                    Mark Completed
 
-</table>
+                                </button>
+
+                            </form>
+
+                            <form action="/provider/task/${task.taskId}/cancel"
+                                  method="post">
+
+                                <button type="submit"
+                                        class="btn btn-danger w-100">
+
+                                    Cancel Task
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            </#list>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="py-5">
+    <div class="container-lg text-center">
+        <p class="text-muted mb-0">
+            © 2026 ErrandRunner. All rights reserved.
+        </p>
+    </div>
+</footer>
 
 </body>
-
 </html>

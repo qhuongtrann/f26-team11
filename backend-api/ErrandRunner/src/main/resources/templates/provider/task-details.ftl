@@ -28,6 +28,7 @@
 
             <div class="col-lg-9">
                 <ul class="navbar-nav list-unstyled d-flex flex-row gap-4 justify-content-end align-items-center mb-0 fw-bold text-uppercase">
+
                     <li>
                         <a href="/provider/dashboard"
                            class="nav-link">
@@ -41,6 +42,7 @@
                             My Claimed Tasks
                         </a>
                     </li>
+
                 </ul>
             </div>
 
@@ -54,11 +56,11 @@
 
         <div class="row justify-content-center">
 
-            <div class="col-md-8">
+            <div class="col-lg-8">
 
                 <div class="product-item">
 
-                    <figure>
+                    <figure class="mb-4">
                         <img src="/images/product-thumb-1.jpg"
                              alt="Task"
                              class="tab-image">
@@ -66,31 +68,39 @@
 
                     <div class="text-center">
 
-                        <h2>${task.title}</h2>
+                        <h2 class="mb-3">
+                            ${task.title}
+                        </h2>
 
-                        <p class="mt-3">
+                        <p class="lead text-muted">
                             ${task.description}
                         </p>
 
-                        <p>
-                            <strong>Category:</strong>
-                            ${task.category!""}
-                        </p>
+                        <hr>
 
-                        <p>
-                            <strong>Location:</strong>
-                            ${task.location!""}
-                        </p>
+                        <div class="row mt-4">
 
-                        <p>
-                            <strong>Fee:</strong>
-                            $${task.fee!""}
-                        </p>
+                            <div class="col-md-6 mb-3">
+                                <strong>Category</strong>
+                                <p>${task.category!""}</p>
+                            </div>
 
-                        <p>
-                            <strong>Status:</strong>
-                            ${task.status!""}
-                        </p>
+                            <div class="col-md-6 mb-3">
+                                <strong>Location</strong>
+                                <p>${task.location!""}</p>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <strong>Fee</strong>
+                                <p>$${task.fee!""}</p>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <strong>Status</strong>
+                                <p>${task.status!""}</p>
+                            </div>
+
+                        </div>
 
                         <#if task.status?upper_case == "OPEN">
 
@@ -98,7 +108,7 @@
                               method="post">
 
                             <button type="submit"
-                                    class="btn btn-primary mt-3">
+                                    class="btn btn-primary btn-lg">
                                 Claim Task
                             </button>
 
@@ -107,7 +117,7 @@
                         </#if>
 
                         <a href="/provider/dashboard"
-                           class="btn btn-secondary mt-3">
+                           class="btn btn-outline-secondary mt-3">
                             Back to Dashboard
                         </a>
 
@@ -122,6 +132,14 @@
     </div>
 
 </section>
+
+<footer class="py-5">
+    <div class="container-lg text-center">
+        <p class="text-muted mb-0">
+            © 2026 ErrandRunner. All rights reserved.
+        </p>
+    </div>
+</footer>
 
 </body>
 </html>
