@@ -58,11 +58,11 @@ public class ProviderMvcController {
     }
 
     @GetMapping("/provider/claimed")
-    public String claimedTasks(Model model) {
-
+    public String claimedTasks(Model model) 
+    {
         model.addAttribute(
                 "tasks",
-                taskService.search(null, "CLAIMED"));
+                taskService.search(null, null));
 
         return "provider/my-claimed-tasks";
     }

@@ -62,7 +62,11 @@
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
 
+            <!-- CLAIMED TASKS FIRST -->
+
             <#list tasks as task>
+
+            <#if task.status?upper_case == "CLAIMED">
 
             <div class="col">
 
@@ -90,19 +94,9 @@
                                 $${task.fee!""}
                             </span>
 
-                            <#if task.status?upper_case == "CLAIMED">
-                                <span class="badge bg-warning text-dark">
-                                    ${task.status}
-                                </span>
-                            <#elseif task.status?upper_case == "COMPLETED">
-                                <span class="badge bg-success">
-                                    ${task.status}
-                                </span>
-                            <#else>
-                                <span class="badge bg-secondary">
-                                    ${task.status}
-                                </span>
-                            </#if>
+                            <span class="badge bg-warning text-dark">
+                                CLAIMED
+                            </span>
 
                         </div>
 
@@ -140,6 +134,67 @@
                 </div>
 
             </div>
+
+            </#if>
+
+            </#list>
+
+            <!-- COMPLETED TASKS SECOND -->
+
+            <#list tasks as task>
+
+            <#if task.status?upper_case == "COMPLETED">
+
+            <div class="col">
+
+                <div class="product-item h-100 opacity-50">
+
+                    <figure>
+                        <img src="/images/product-thumb-1.jpg"
+                             alt="Task"
+                             class="tab-image">
+                    </figure>
+
+                    <div class="d-flex flex-column text-center">
+
+                        <h3 class="fs-6 fw-normal">
+                            ${task.title}
+                        </h3>
+
+                        <div class="text-muted fs-7 mb-2">
+                            📍 ${task.location!""}
+                        </div>
+
+                        <div class="d-flex justify-content-center align-items-center gap-2 my-2">
+
+                            <span class="text-dark fw-semibold">
+                                $${task.fee!""}
+                            </span>
+
+                            <span class="badge bg-success">
+                                COMPLETED
+                            </span>
+
+                        </div>
+
+                        <div class="p-3">
+
+                            <button class="btn btn-secondary w-100"
+                                    disabled>
+
+                                Completed Task
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            </#if>
 
             </#list>
 
