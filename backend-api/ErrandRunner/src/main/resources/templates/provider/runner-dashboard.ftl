@@ -21,9 +21,11 @@
         <div class="row py-3 border-bottom">
 
             <div class="col-lg-3">
-                <h2 class="text-primary fw-bold mb-0">
-                    ErrandRunner
-                </h2>
+                <a href="/" class="text-decoration-none">
+                    <h2 class="text-primary fw-bold mb-0">
+                        ErrandRunner
+                    </h2>
+                </a>
             </div>
 
             <div class="col-lg-9">

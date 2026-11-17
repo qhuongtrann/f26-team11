@@ -13,8 +13,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/vendor.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="/css/vendor.css">
+    <link rel="stylesheet" href="/styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,10 +44,7 @@
       <symbol xmlns="http://www.w3.org/2000/svg" id="pet" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3c-1.1 0-2 .9-2 2c0 .74.4 1.38 1 1.72V8h-2c-2.76 0-5 2.24-5 5v1c0 2.76 2.24 5 5 5h8c2.76 0 5-2.24 5-5v-1c0-2.76-2.24-5-5-5h-2V6.72c.6-.34 1-.98 1-1.72c0-1.1-.9-2-2-2z"/></symbol>
     </svg>
 
-    <div class="preloader-wrapper">
-      <div class="preloader">
-      </div>
-    </div>
+    
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
 
@@ -107,7 +104,7 @@
           
           <div class="col-sm-4 col-lg-2 text-center text-sm-start d-flex gap-3 justify-content-center justify-content-md-start">
             <div class="d-flex align-items-center my-3 my-sm-0">
-              <a href="index.html" class="text-decoration-none">
+              <a href="/" class="text-decoration-none">
                 <h2 class="text-primary fw-bold mb-0">ErrandRunner</h2>
               </a>
             </div>
@@ -144,7 +141,7 @@
           <div class="col-lg-4">
             <ul class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-4 justify-content-center justify-content-lg-end flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark px-lg-3">
               <li class="nav-item active">
-                <a href="index.html" class="nav-link">Home</a>
+                <a href="/" class="nav-link">Home</a>
               </li>
               <li class="nav-item">
                 <a href="index.html" class="nav-link">How It Works</a>
@@ -185,13 +182,14 @@
               <p class="fs-4 text-light">Connect with trusted neighborhood runners for grocery delivery, package pickups, and custom tasks.</p>
               
               <div class="d-flex gap-3">
-  <a href="customer-request.html" class="btn btn-primary text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">
+  <a href="/customer/request" class="btn btn-primary text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">
     Post an Errand
   </a>
 
   <!-- Updated link to lead to the runner registration page -->
-  <a href="../../provider/runner-register.html" class="btn btn-dark text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">
-    Become a Runner
+  <a href="/provider/login"
+     class="btn btn-dark text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">
+      Runner Login
   </a>
 </div>
 
@@ -747,10 +745,9 @@
         </div>
       </div>
     </div>
-    <script src="js/jquery-1.11.0.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/script.js"></script>
+
   </body>
 </html>

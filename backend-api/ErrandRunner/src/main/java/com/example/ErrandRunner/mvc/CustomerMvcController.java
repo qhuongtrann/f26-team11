@@ -17,6 +17,11 @@ public class CustomerMvcController {
         this.taskService = taskService;
     }
 
+    @GetMapping("/")
+    public String homePage() {
+        return "customer/index";
+    }
+
     @GetMapping("/customer/request")
     public String customerRequestPage() {
         return "customer/customer-request";

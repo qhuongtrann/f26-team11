@@ -2,10 +2,15 @@ package com.example.ErrandRunner.mvc;
 
 import com.example.ErrandRunner.entity.provider.ErrandTask;
 import com.example.ErrandRunner.entity.provider.ErrandTaskService;
+import com.example.ErrandRunner.entity.provider.Provider;
+import com.example.ErrandRunner.entity.provider.ProviderService;
+
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,13 +19,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ProviderMvcController {
 
     private final ErrandTaskService taskService;
+    private final ProviderService providerService;
 
-    public ProviderMvcController(ErrandTaskService taskService) {
+    public ProviderMvcController(
+            ErrandTaskService taskService,
+            ProviderService providerService) {
+
         this.taskService = taskService;
+        this.providerService = providerService;
     }
 
-    @GetMapping("/")
-    public String home() {
+    @GetMapping("/provider/register")
+    public String registerPage(Model model) {
+
+        model.addAttribute("provider", new Provider());
+
+        return "provider/runner-register";
+    }
+
+    @PostMapping("/provider/register")
+    public String registerProvider(
+            @ModelAttribute Provider provider,
+            HttpSession session) {
+
+        provider.setRating(0.0);
+
+        Provider savedProvider =
+                providerService.create(provider);
+
+        session.setAttribute(
+                "providerId",
+                savedProvider.getProviderId());
+
         return "redirect:/provider/dashboard";
     }
 
@@ -50,19 +80,45 @@ public class ProviderMvcController {
 
     @PostMapping("/provider/task/{id}/claim")
     public String claimTask(
-            @PathVariable Long id) {
+            @PathVariable Long id,
+            HttpSession session) {
 
-        taskService.claimTask(id, 1L);
+        Long providerId =
+                (Long) session.getAttribute("providerId");
+
+        if (providerId == null) {
+            return "redirect:/provider/register";
+        }
+
+        taskService.claimTask(
+                id,
+                providerId);
 
         return "redirect:/provider/claimed";
     }
 
     @GetMapping("/provider/claimed")
-    public String claimedTasks(Model model) 
-    {
+    public String claimedTasks(
+            HttpSession session,
+            Model model) {
+
+        Long providerId =
+                (Long) session.getAttribute("providerId");
+
+        if (providerId == null) {
+            return "redirect:/provider/register";
+        }
+
+        Provider provider =
+                providerService.findById(providerId);
+
+        model.addAttribute(
+                "provider",
+                provider);
+
         model.addAttribute(
                 "tasks",
-                taskService.search(null, null));
+                taskService.findTasksByProvider(providerId));
 
         return "provider/my-claimed-tasks";
     }
@@ -95,5 +151,52 @@ public class ProviderMvcController {
         taskService.update(id, task);
 
         return "redirect:/provider/dashboard";
+    }
+
+    @GetMapping("/provider/login")
+    public String loginPage() {
+
+        return "provider/login";
+    }
+
+    @PostMapping("/provider/login")
+    public String login(
+            @RequestParam String email,
+            @RequestParam String password,
+            HttpSession session,
+            Model model) 
+    {
+
+        try 
+        {
+
+            Provider provider = providerService.findByEmail(email);
+
+            if (!provider.getPassword().equals(password)) 
+                {
+
+                    model.addAttribute("error","Invalid password");
+
+                    return "provider/login";
+                }
+
+            session.setAttribute("providerId", provider.getProviderId());
+
+            return "redirect:/provider/dashboard";
+
+        }
+        catch (Exception e) 
+        {
+
+            model.addAttribute("error", "Account not found");
+            return "provider/login";
+        }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) 
+    {
+        session.invalidate();
+        return "redirect:/";
     }
 }
