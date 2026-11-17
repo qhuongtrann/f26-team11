@@ -51,4 +51,11 @@ public class ProviderService {
 
         repository.deleteById(id);
     }
+
+    public Provider findByEmail(String email)
+    {
+        return repository.findByEmail(email)
+                .orElseThrow(() ->
+                        new RuntimeException("Provider not found"));
+    }
 }

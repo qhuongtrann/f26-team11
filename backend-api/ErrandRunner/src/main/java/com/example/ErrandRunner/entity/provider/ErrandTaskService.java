@@ -92,4 +92,10 @@ public class ErrandTaskService {
 
         return taskRepository.save(task);
     }
+
+    public List<ErrandTask> findTasksByProvider(Long providerId)
+    {
+        return taskRepository.findByProviderProviderId(providerId);
+    }
+    
 }
